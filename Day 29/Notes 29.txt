@@ -1,0 +1,11 @@
+Summary
+Setting up a canvas with an image in tkinter for a PasswordManager window.
+
+Highlights
+💻 Download starting project from course resources
+🎨 Create window with canvas displaying logo image
+📐 Set canvas dimensions and position image in center
+📚 Reference canvas documentation for create_image method
+🧩 Use padx and pady for padding between canvas and window
+📝 Review canvas widget lessons for better understanding
+📏 Learn about grid system for complex user interface layouts
