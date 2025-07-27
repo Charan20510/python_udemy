@@ -1,0 +1,395 @@
+L - 221
+
+Challenge 1 - Working with Images and Setting up the Canvas
+Introduction
+To begin, head over to the course resources and download the starting project as a zip file. Once unzipped, open it using PyCharm and examine the starting files. Included is a logo image that will be used in our project, along with a very blank main.py file.
+
+Challenge Overview
+Our first challenge is to create a window using tkinter with the title Password Manager. The window will contain only a canvas widget displaying the logo image. The canvas should have a width and height of 200 pixels. Additionally, the canvas will be padded 20 pixels from each edge of the window, so it appears centered. The logo image should be placed exactly in the center of the canvas.
+
+Reference Materials
+Recall what was learned about the canvas widget previously. In the course resources, a link to the canvas documentation is provided, including the important create_image method. Review the expected inputs for this method and explore other canvas functionalities. Alternatively, review yesterday's code for guidance.
+
+Implementation Steps
+We will start by importing all classes from tkinter to set up the user interface. Then, create the main window and assign it the title "Password Manager". After that, create a canvas widget with a height and width of 200 pixels.
+
+Next, load the logo image using the PhotoImage class by providing the filename logo.png. Since the image and script are in the same folder, the filename is simply logo.png. Once the image is created, add it to the canvas using the create_image method, specifying the image object.
+
+The create_image method requires the position of the image on the canvas as a tuple representing the X and Y coordinates. Since the canvas is 200 pixels wide and tall, the center coordinates are (100, 100). This centers the logo image on the canvas.
+
+Finally, pack the canvas onto the window using the pack() method. To add padding between the canvas and the window edges, configure the window with padx=20 and pady=20. This completes the layout to match the desired appearance.
+
+Complete Code Example
+python Code Sample
+from tkinter import *
+
+window = Tk()
+window.title("Password Manager")
+
+canvas = Canvas(height=200, width=200)
+logo_img = PhotoImage(file="logo.png")
+canvas.create_image(100, 100, image=logo_img)
+canvas.pack()
+
+window.config(padx=20, pady=20)
+
+window.mainloop()
+
+Conclusion
+Running this code creates a window titled "Password Manager" with a 200 by 200 canvas displaying the logo image centered. The canvas is padded 20 pixels from all sides of the window, achieving the desired layout. If you encounter difficulties, review the canvas widget lessons and the create_image method documentation. In the next lesson, we will explore the grid system for more complex user interface layouts.
+
+Key Takeaways
+Created a tkinter window titled "Password Manager" with a 200x200 canvas.
+Loaded and displayed a logo image centered on the canvas using the create_image method.
+Applied padding of 20 pixels on all sides between the canvas and the window edges.
+Used pack() layout initially and configured window padding with padx and pady.
+
+Summary
+Setting up a canvas with an image in tkinter for a PasswordManager window.
+
+Highlights
+💻 Download starting project from course resources
+🎨 Create window with canvas displaying logo image
+📐 Set canvas dimensions and position image in center
+📚 Reference canvas documentation for create_image method
+🧩 Use padx and pady for padding between canvas and window
+📝 Review canvas widget lessons for better understanding
+📏 Learn about grid system for complex user interface layouts
+
+
+L - 222
+
+Challenge 2 - Use grid() and columnspan to Complete the User Interface
+To go from this, to this will require not only some widgets to be added but a little bit more knowledge about how to lay out our widgets on the grid.
+
+Notice how here we've got a single entry that is spread across the right side of the screen, but then down here we've got an entry that's only taking up a part of that space. Effectively, if we think about our grid, this particular entry is actually taking up two columns.
+
+So how can we do this? To demonstrate this, I've created a sandbox app. It's super simple; all it has is a red label and a green label. You can see that the red label has a width of 20 and a height of 5, as does the green, but the red is on row=0, column=0, whereas the green is on row=1, column=1. So we get this kind of checkered look.
+
+If I decide to add another label, let's call it 'b' for blue, and give it a background of blue and the same width and height, then put this new label onto the grid on the next row, row=2, column=0, you can probably predict where that label is going to go. Indeed, it goes on to the very first leftmost column and it's on the third row.
+
+Now, what if I wanted that blue label to go across the entire width so that it's below the red and also below the green? You might think that I could simply double the width, right? Instead of a width of 20, let's change it to 40. Surely, that's going to stretch this label so that it goes across the entire red and green label.
+
+But unfortunately, when I run this, you'll see that the blue label is still within the first column, and in fact, it's stretched that column to a width of 40. The red label remains centered in the leftmost or first column, and the blue label is nowhere near the green label because it's not allowed to go into the second column.
+
+So how can we solve this situation? The actual answer is another attribute that the grid has, called columnspan. The columnspan is exactly what it sounds like; it's basically how many columns this particular widget is going to span.
+
+In our case, we want it to go across two columns: column 0 and column 1. So it should start at column 0 but then span a whole 2 columns. Now when I run this code, you can see we get our desired effect. The blue label is now across the red and the green, spanning two columns.
+
+The link to this playground is in the Course Resources, so feel free to head over there and give it a go if you want to play around with this example.
+
+Now, in our case, if we break down the final layout we're looking for, it's effectively a three-column and five-row layout. We've already got our canvas, which is actually going to go in the middle, probably the second column. Then we've got the Website, the Email/Username, the Password, and finally our two Buttons.
+
+I've laid out this entire user interface and specified the width of some of these entries and buttons, just because you'll need to do a bit of tweaking around to make sure that everything lines up with each other. I've already done that ahead of time and worked out the near optimal width.
+
+What I want you to do is to use what we've learned about the Grid columnspan. If we have our Label, Button, New Button, and Entry, and I want this particular button to go across two columns, then I have to change that columnspan attribute to 2. I also have to specify which column it starts in and how many columns it will span.
+
+Using everything you've learned so far, I want you to recreate this user interface. Have a look at what's on screen: these are labels, these are entries, and these two are buttons. Observe where they lie within the grid system, how many columns they go across, and also the width of some of these widgets. See if you can recreate this user interface in your project. Pause the video and give that a go.
+
+Key Takeaways
+The columnspan attribute in grid layout allows widgets to span multiple columns.
+Simply increasing the width of a widget does not make it span multiple columns in a grid.
+Proper use of row, column, and columnspan is essential for precise widget placement in Tkinter.
+Designing a user interface requires careful adjustment of widget widths and grid positioning to achieve the desired layout.
+
+Summary
+Learning how to use the grid() and columnspan attributes is essential for laying out widgets effectively in a GUI.
+
+Highlights
+💡 Understanding how to use columnspan in grid layout
+💡 Demonstrating the use of columnspan in a sandbox app
+💡 Explaining the importance of columnspan for spanning multiple columns
+💡 Utilizing columnspan attribute to span multiple columns effectively
+💡 Recreating a three-column, five-row layout using grid() and columnspan
+💡 Adjusting widget widths for optimal alignment in the user interface
+💡 Encouraging practice and experimentation with grid layout in projects
+
+
+L - 223
+
+#   I've created three labels and it's time to actually put them onto the screen. Now, because I'm going to be using grids I can't use pack in addition. So I also have to put my canvas onto the grid.
+
+#   Now remember that the width is a property of the entry class. It's not something that's related to the grid.
+
+Summary
+The text provides a step-by-step solution to creating a grid layout for a user interface, including labels, entries, and buttons.
+
+Solution to the Creating the Grid Layout
+In this tutorial, we will walk through the solution to the challenge of creating the grid layout for our user interface. If you have not attempted to recreate this UI yet, pause the video now to try it yourself before continuing.
+
+Creating Labels
+We begin by creating all the labels since they are relatively simple to layout and will be quick to implement. After creating three labels, we will place them onto the screen using the grid layout manager.
+
+The canvas widget will be placed on the grid at row 0, column 1, which is the top middle position. The labels for website, email, and password will be positioned on subsequent rows 1, 2, and 3 respectively, all in column 0, the first column.
+
+When we run this code, the canvas appears in column 1 while the labels are in column 0, which looks a little odd initially but will balance out once we add the other components.
+
+Creating Entry Widgets
+Next, we create the entry widgets. The website and email entries will have a width of 35, while the password entry will have a width of 21. Note that the width is a property of the Entry class itself and should not be passed as an argument to the grid method, as that will cause an error.
+
+We then place the entries on the grid. The website entry goes in row 1, column 1, the email entry in row 2, column 1, and the password entry in row 3, column 1. This aligns each entry next to its corresponding label.
+
+Adding Buttons
+We add two buttons: the "Generate Password" button and the "Add" button. The generate password button is placed in row 3, column 2, to the right of the password entry. The add button is placed in the last row, spanning the width of the form.
+
+Initially, the add button appears too small. Referring back to the design, we set its width to 36 to make it wider. However, the generate password button is still in a separate column and does not align well with the password entry.
+
+To fix this, we apply a column span of 2 to the website entry, email entry, and the add button. This allows these widgets to span across two columns, improving alignment and layout consistency.
+
+After applying the column spans, the layout looks much more aligned and visually balanced. The generate password button remains sized according to its content, but you can adjust widths and padding to fine-tune the appearance.
+
+Final Adjustments
+We consider increasing the padding around the window from 20 to 50 to add more white space and reduce visual busyness. This final design closely matches the intended UI layout.
+
+With the UI setup complete, the next step is to add functionality to the interface, which will be covered in upcoming lessons.
+
+Key Takeaways
+Used grid layout to position labels, entries, and buttons precisely in the UI.
+Applied column spanning to entries and buttons for better alignment and sizing.
+Adjusted widget widths and padding to improve overall interface aesthetics.
+Emphasized the importance of separating widget creation and layout management in Tkinter.
+
+Highlights
+💻 Creating labels and placing them on the grid.
+📐 Setting up entries with different widths and positioning them in the grid.
+🖱️ Adding buttons to specific locations on the grid.
+🛠 Adjusting column spans to align components properly.
+🧩 Fine-tuning the layout by adjusting padding for a cleaner look.
+🎨 Achieving a final design that is well-aligned and visually pleasing.
+📝 Next steps involve adding functionality to the user interface.
+
+
+L - 224
+
+Challenge 3 - Saving Data to File
+Introduction to Saving User Data
+Now that the user interface is fully set up, it is time to proceed to the next step: saving some of the data that the user enters. Before we get started, there are a couple of things to note.
+
+Setting Initial Focus on the First Textbox
+Currently, when we run the application, it simply launches the app. However, it would be beneficial if the cursor was already positioned within the first textbox. This way, the user can start typing immediately upon launching the password manager.
+
+To achieve this, you can obtain a reference to the website entry widget and call its focus() method. This will place the cursor inside that particular entry field.
+
+Pre-populating the Email Entry
+When signing up for many websites, I often use a single email address. It would be convenient if the email field was already pre-populated with this commonly used email when launching the password manager.
+
+This can be done by adding a starting value to the email entry using the insert() method. The insert() method takes two parameters: an index and the string to insert.
+
+The index specifies the position where the text will be inserted. For example, an index of zero inserts the text at the very beginning of the entry. Alternatively, the constant END (from tkinter constants) represents the position after the last character in the entry.
+
+In our case, since the email entry starts empty, inserting at index zero suffices. The text to insert can be a dummy email or your own email address, so that every time the app runs, the email field is pre-filled.
+
+Saving Data to a File
+The main challenge is to save the inputs from the website entry, email entry, and password entry into a file named data.txt when the user clicks the Add button.
+
+The data should be saved in a format that separates the website, email, and password with spaces and a pipe symbol (|). You can format this however you prefer, as you will be the one reviewing the file.
+
+Each new entry should be appended on a new line to the end of the file, preserving previous entries.
+
+Writing to a File in Python
+To write to a file, you can open it in append mode ('a') so that new data is added to the end of the file without overwriting existing content. If the file does not exist, it will be created automatically.
+
+Using the with statement to open the file is recommended, as it automatically closes the file after the block is executed, ensuring proper resource management.
+
+Retrieving Data from Entry Widgets
+To get the current text from an entry widget, use the get() method. For example, to get the website, call website_entry.get(). Similarly, retrieve the email and password from their respective entries.
+
+Writing Formatted Data to the File
+Once the data is retrieved, write it to the file using the write() method. Format the string using an f-string to include the website, email, and password separated by spaces and pipe symbols.
+
+For example:
+
+f"{website} | {email} | {password}\n"
+
+Note the newline character (\n) at the end to ensure each entry is on a new line.
+
+Clearing Entry Fields After Saving
+After saving the data, it is user-friendly to clear the website and password entries so that the user can enter new data easily.
+
+Use the delete() method on the entry widgets to remove their contents. The method takes two parameters: the start index and the end index. To delete all content, delete from index zero to END.
+
+For example:
+
+website_entry.delete(0, END)
+
+password_entry.delete(0, END)
+
+Complete Save Function Implementation
+Below is the implementation of the save() function that:
+
+Retrieves data from the website, email, and password entries.
+Opens data.txt in append mode.
+Writes the formatted data with a newline.
+Clears the website and password entries after saving.
+
+python Code Sample
+def save():
+    website = website_entry.get()
+    email = email_entry.get()
+    password = password_entry.get()
+
+    with open('data.txt', 'a') as data_file:
+        data_file.write(f"{website} | {email} | {password}\n")
+
+    website_entry.delete(0, END)
+    password_entry.delete(0, END)
+
+Assigning the Save Function to the Add Button
+To trigger the save() function when the Add button is clicked, assign it to the button's command parameter during its creation.
+
+For example:
+
+add_button = Button(text="Add", command=save)
+
+python Code Sample
+add_button = Button(text="Add", command=save)
+
+Summary and Next Steps
+By implementing the above, the application now saves user input to a file, clears input fields after saving, and improves user experience by focusing the cursor and pre-populating the email field.
+
+In the next lesson, we will explore how to provide user feedback through popups to confirm successful data entry or prompt for confirmation.
+
+Key Takeaways
+The cursor can be automatically focused on the first input field using the focus() method.
+Pre-populating an entry field is possible with the insert() method, specifying the index and text.
+User input from entry fields can be retrieved using the get() method.
+Data can be saved to a file in append mode, formatting entries with delimiters and newlines.
+Entry fields can be cleared using the delete() method with appropriate index ranges.
+Using the with statement for file operations ensures automatic file closure.
+Adding newline characters (\n) when writing to files improves readability by separating entries.
+
+Summary
+In this challenge, the task is to save data entered by the user (website, email, password) into a file called data.txt. The data is formatted with spaces and a pipe symbol, and each entry is added on a new line.
+
+Highlights
+🔍 Set focus on the first textbox when the app is launched to allow immediate typing.
+📧 Pre-populate the email field with commonly used email addresses.
+📝 Use the insert method to add text at the beginning or end of an entry.
+💾 Save the website, email, and password data into data.txt file using the append mode.
+🧹 Clear the website and password entries after saving the data.
+📑 Format the data in a way that is comfortable for easy viewing.
+🚀 Create a function triggered by the 'add' button click to save the data.
+
+
+L - 225
+
+Dialog Boxes and Pop-Ups in Tkinter
+Improving User Experience with Dialog Boxes in Tkinter
+Previously, the password manager was able to save the data entered by the user and format it inside the data.txt file. However, there was an issue with user experience: when the user entered their details, there was no feedback indicating whether the save was successful or not, nor was there a way for the user to verify the data before saving.
+
+Introduction to Standard Dialogs in Tkinter
+To address this, Tkinter provides standard dialogs, also known as popups. One of the most popular standard dialogs is the message box. These popups are easy to create by importing the messagebox module and using methods such as showinfo, showwarning, showerror, or prompts like askyesno, askokcancel, askquestion, and askretrycancel.
+
+python Code Sample
+from tkinter import messagebox
+
+Using Message Boxes for User Confirmation
+The goal is to prompt the user for confirmation before saving their details. When the save function is called (triggered by pressing the add button), a message box should appear, displaying the details entered and asking if it is okay to save. The message box can be customized with a title and a message.
+
+python Code Sample
+messagebox.askokcancel(title=website, message=f"These are the details entered:\nEmail: {email}\nPassword: {password}\nIs it okay to save?")
+
+When the user clicks OK, the information is written to the data file. If the user clicks Cancel, they can return to the screen and edit their input if necessary. The output of the message box method is a boolean value, which can be stored in a variable such as is_ok.
+
+python Code Sample
+is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered:\nEmail: {email}\nPassword: {password}\nIs it okay to save?")
+if is_ok:
+    # Write to file and clear entries
+    pass
+
+If is_ok is True, the program proceeds to write the data to the file and clears the entry fields. If not, nothing happens and the popup box dismisses itself.
+
+Input Validation Before Saving
+It is important to validate the user's input before saving. If the website or password fields are empty, the program should not allow saving. Instead, a message box should notify the user that some fields are empty.
+
+python Code Sample
+if len(website) == 0 or len(password) == 0:
+    messagebox.showinfo(title="Oops", message="Please make sure you have not left any fields empty.")
+else:
+    # Proceed with confirmation and saving
+    pass
+
+This validation ensures that the user cannot save an empty website or password. If either field is empty, a popup appears with the message: "Please make sure you have not left any fields empty." Only if both fields are filled does the program proceed to the confirmation dialog and saving process.
+
+Next Steps
+In the next lesson, functionality will be added to generate passwords automatically, embedding previously created password generation code into the application.
+
+Key Takeaways
+Tkinter provides standard dialogs, such as message boxes, to improve user feedback and experience.
+The messagebox module must be imported separately from tkinter to use these dialogs.
+Message boxes can be used for information, warnings, errors, and to ask the user for confirmation before saving data.
+Input validation is essential to prevent saving empty fields, and message boxes can notify users when fields are left empty.
+
+Summary
+Dialog boxes and pop-ups in Tkinter can be used to provide feedback to users and confirm actions before saving data. Standard dialogs like message boxes can be easily created and customized.
+
+Highlights
+💬 Dialog boxes and pop-ups in Tkinter can improve user experience.
+💡 Standard dialogs like message boxes can be used to show info, warnings, errors, and ask for user input.
+🛠️ Import the message box module from Tkinter to use standard dialogs.
+📌 Use message boxes to confirm actions before saving data, such as checking details entered by the user.
+🚫 Validate user input by checking if essential fields like website or password are empty before proceeding.
+🔄 Use if statements to trigger message boxes if validation criteria are not met.
+🧩 Consider adding additional functionality like generating passwords in future lessons.
+
+
+L - 226
+
+Generate a Password & Copy it to the Clipboard
+Introduction
+In this lesson, we revisit the password generator project from day 5. Previously, we created a password generator using three lists: letters, numbers, and symbols. We generated a random list of these characters, shuffled them together, and converted them into a string to create a secure password.
+
+Modifying the Password Generator
+The code has been modified so that no user input is required. Instead, a random number between 8 and 10 is chosen for the number of letters, and between 2 and 4 for both numbers and symbols. You are instructed to copy the provided code into your password generator section, as it will be used in the password manager. When the user clicks the button, a random password is generated and pre-populated in the field, eliminating the need for manual entry.
+
+Refactoring with List Comprehensions
+After inserting the password generator code, it is suggested to reformat it by placing imports at the top. The code originally used for-loops to build lists of random letters, numbers, and symbols. This is an excellent opportunity to use list comprehensions, which can replace multiple lines of code with a single line for each list. You are encouraged to try converting the three sections into list comprehensions as a revision exercise.
+
+Implementing List Comprehensions
+Instead of creating an empty list and appending random choices in a for-loop, three new lists are created using list comprehensions: password_letters, password_numbers, and password_symbols. The format is new_item for _ in range(number), where the underscore is used because the actual value from the range is not needed. For each iteration, a random choice from the respective list is added. This approach replaces the previous for-loops.
+
+Combining and Shuffling the Password List
+After creating the three lists, they are combined into a single password_list by adding them together. The combined list is then shuffled to ensure randomness. The code can be further shortened by importing only the necessary methods from the random module and using them directly.
+
+python Code Sample
+from random import choice, randint, shuffle
+
+Using the join Method for Strings
+To convert the list of characters into a string, the join method is introduced. This method is available on every string in Python. By calling "".join(password_list), all elements in the list are concatenated without any separator, resulting in the final password string. This replaces the previous approach of initializing an empty string and appending each character in a loop.
+
+python Code Sample
+password = "".join(password_list)
+
+Embedding the Generator in a Function
+The entire password generation process is encapsulated in a function named generate_password. This function can be called when the user presses the generate password button. Instead of printing the password, it is inserted into the password entry field at position zero, making it immediately available for the user.
+
+python Code Sample
+password_entry.insert(0, password)
+
+Copying the Password to the Clipboard
+To further improve usability, the pyperclip module is introduced. This cross-platform Python module allows for easy copying and pasting to the clipboard. By importing pyperclip and calling pyperclip.copy(password), the generated password is automatically copied to the clipboard, ready to be pasted wherever needed.
+
+python Code Sample
+import pyperclip
+pyperclip.copy(password)
+
+Conclusion
+With these improvements, the password manager now generates secure passwords, pre-populates the password field, and copies the password to the clipboard for easy pasting. This streamlines the process of creating and using strong passwords for all accounts, enhancing both security and convenience.
+
+Key Takeaways
+Refactored the password generator using list comprehensions and the join method for concise, Pythonic code.
+Incorporated the pyperclip module to automatically copy generated passwords to the clipboard.
+Improved user experience by pre-populating password fields and enabling quick pasting.
+Emphasized the importance of secure, unique passwords for all accounts.
+
+Summary
+In this tutorial, we learn how to generate a secure password using Python and copy it to the clipboard for easy access.
+
+Highlights
+🔒 Modified code to generate random password without user input
+🔧 Used list comprehensions to simplify code and improve readability
+🔄 Combined lists of letters, symbols, and numbers for password generation
+🖥 Integrated password generation function into a graphical user interface
+📋 Used pyperclip module to copy password to clipboard
+🛡 Encouraged use of secure passwords for online accounts
+🎉 Completed project for generating and managing secure passwords
